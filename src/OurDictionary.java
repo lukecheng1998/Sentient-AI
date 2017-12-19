@@ -7,7 +7,7 @@ public class OurDictionary {
     private double positive1 = 0;
     private double negative1 = 0;
 
-    Random r = new Random(3);
+    Random r = new Random();
 
     ImageIcon icon = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Screen Shot 2017-12-17 at 4.58.54 PM.png");
 
@@ -187,11 +187,11 @@ public class OurDictionary {
         double positivefinalCheck = (double) positive1 / (double) count;
         double neutralFinalCheck = (double) neutral1 / (double) count;
         if(negativeFinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt()], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else if(positivefinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt()], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else if(neutralFinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt()], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 }

@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -78,6 +79,20 @@ public class Monika extends Human{
             }
         }
     }
+    public void generateReturningToMonika(String fileName) throws Exception{//If Monika has met you, then reread it to the file
+        String temp = null;
+        ArrayList<String> names = new ArrayList<>();
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+        BufferedReader bf = new BufferedReader(fr);
+        while((temp = bf.readLine()) != null){
+            names.add(temp);
+        }
+        name = names.get(1);
+        JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+
+    }
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
     }
@@ -90,6 +105,44 @@ public class Monika extends Human{
     }
     public String getName(){
         return name;
+    }
+    public void FileWrite(String fileName) throws Exception{ //Will write the method to a .txt file in order for Monika to remember who you are
+        ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+            File file = new File(fileName);
+            FileReader f1 = new FileReader(file);
+            BufferedReader bf = new BufferedReader(f1);
+            while((temp1 = bf.readLine()) != null){
+                temp.add(temp1);
+            }
+            bf.close();
+            temp.set(0, "1");
+            temp.set(1,name);
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+
+    }
+    public boolean FileReaderChecker(String filename) throws Exception{ //Will check and see if Monika has met you already
+        //ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+        File file = new File(filename);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            if(temp1.equals("1")){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        bf.close();
+        f1.close();
+        return false;
     }
 /*You will need a lot of these
 * public void getMonikaImage(){
