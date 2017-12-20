@@ -16,10 +16,10 @@ public class OurDictionary {
             "Well that's good to know", "Well I'm glad", "That's so cool", "ahaha", "ehehe", "You're so funny"
 };
     public String[] listofNegativeResponses = new String[]{
-            "Well, I'm sorry you feel that way", "Sorry, I'll try to help", "My apologies if I made a mistake"
+            "Well, I'm sorry you feel that way", "Sorry, I'll try to help", "My apologies if I made a mistake", "Don't worry, I also simpathize with you", "I'm sorry"
     };
     public String[] listofNeutralResponses = new String[]{
-            "That's cool to hear", "How nice", "That's cute"
+            "That's cool to hear", "How nice", "That's cute", "Great I r8 8/8", "Cool"
     };
 
     public String[] positive = new String[]{"Admire", "admiring", "admired", "luke", "appreciating", "appreciated", "appreciate",
@@ -145,53 +145,61 @@ public class OurDictionary {
             "Thinking", "Thought", "Think", "Pondering", "Ponder", "Pondered"};
 
     private void neutralCheck(String x) {
-        for (int i = 0; i < neutral.length; i++) {
-            if (x.equalsIgnoreCase(neutral[i])) {
-                neutral1++;
-
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < neutral.length; j++) {
+                if (temp[i].equalsIgnoreCase(neutral[j])) {
+                    neutral1++;
+                }
             }
-
         }
     }
 
     private void negativeCheck(String x) {
-        for (int i = 0; i < negative.length; i++) {
-            if (x.equalsIgnoreCase(negative[i])) {
-                negative1++;
-
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < negative.length; j++) {
+                if (temp[i].equalsIgnoreCase(negative[j])) {
+                    negative1++;
+                }
             }
-
         }
     }
 
     private void positiveCheck(String x) {
-        for (int i = 0; i < positive.length; i++) {
-            if (x.equalsIgnoreCase(positive[i])) {
-                positive1++;
-
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < positive.length; j++) {
+                if (temp[i].equalsIgnoreCase(positive[j])) {
+                    positive1++;
+                }
             }
-
         }
     }
-
+    //TODO: Write a default response method
     //The human will attempt to read the lines and increment based on the number matches
     public void readCountLines(String s) {
-        double count = 0;
+        System.out.println(s);
+        int count = s.split("\\s+").length;
+
         neutralCheck(s);
         positiveCheck(s);
         negativeCheck(s);
-        for(int i = 0; i < s.length(); i++){
-            count++;
-        }
-        double negativeFinalCheck = (double) neutral1 / (double) count;
+
+        double negativeFinalCheck = (double) negative1 / (double) count;
+        System.out.println(negativeFinalCheck);
         double positivefinalCheck = (double) positive1 / (double) count;
+        System.out.println(positivefinalCheck);
         double neutralFinalCheck = (double) neutral1 / (double) count;
-        if(negativeFinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(positivefinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(neutralFinalCheck >= 0.50){
-            JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(3)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        System.out.println(neutralFinalCheck);
+        if(negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck){
+            JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck){
+            JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck){
+            JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else{
+            JOptionPane.showMessageDialog(null, "Sorry I don't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
 }

@@ -31,6 +31,7 @@ public class Monika extends Human{
         JOptionPane.showMessageDialog(null, "Currently I'm a beta version of myself.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "There will be a textfield for you to fill out if you want to ask me anything.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "If you don't answer anything, I'll come up with stuff to talk to you about!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Type 'help' and I'll assist you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "However, you are free to ask me anything you want!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
     }
     //Generate random speeches within these three methods
@@ -68,16 +69,20 @@ public class Monika extends Human{
         MonikasThirdPhrase.add("She was so addicted to him, that she killed himself for him.");
 
         MonikasThirdPhrase.add("My favorite stories of that genre are usually written by Stephen King or anyone like that.");
-        for(int i = 0; i < MonikasPhrase.size(); i++){
-            if(getRandomNumber == MonikasThirdPhrase.indexOf(i)){
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(0), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i + 1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            }else if(getRandomNumber == MonikasThirdPhrase.indexOf(i)){
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i + 1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-
-            }
+        if(getRandomNumber == 0){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(0), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(getRandomNumber == 1){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(2), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(3), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(getRandomNumber == 2){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(4), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
+    }
+    public void ifHelpisTriggered(){
+        System.out.println("Testing");
+        JOptionPane.showMessageDialog(null, "You can type in something to see my response to the question", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Or I can start a conversation with you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
     }
     public void generateReturningToMonika(String fileName) throws Exception{//If Monika has met you, then reread it to the file
         String temp = null;
@@ -95,9 +100,22 @@ public class Monika extends Human{
     }
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        //System.out.println(phrase);
+        if(!getPhrase().equals("")) {
+            if (getPhrase().equalsIgnoreCase("Help")) {
+                ifHelpisTriggered();
+            }else{
+                isTextFieldWritten();
+            }
+        }else {
+            generateRandomSpeechFirst();
+            generateRandomSpeechSecond();
+            generateRandomSpeechThird();
+        }
     }
     public void isTextFieldWritten(){
         OurDictionary d = new OurDictionary();
+        System.out.println("Test");
         d.readCountLines(phrase);
     }
     public String getPhrase(){

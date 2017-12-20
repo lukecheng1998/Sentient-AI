@@ -11,15 +11,8 @@ public class SentientAI {
         }else if(!m.FileReaderChecker("remembering.txt")){
             m.generateReturningToMonika("remembering.txt");
         }
-        while(true){
+        while(true) {
             m.defaultMonikaImage();
-            if(!m.getPhrase().equals("")){
-                m.isTextFieldWritten();
-            }else {
-                m.generateRandomSpeechFirst();
-                m.generateRandomSpeechSecond();
-                m.generateRandomSpeechThird();
-            }
         }
     }
 }
