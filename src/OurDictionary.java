@@ -1,4 +1,10 @@
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -6,6 +12,7 @@ public class OurDictionary {
     private double neutral1 = 0;
     private double positive1 = 0;
     private double negative1 = 0;
+
 
     Random r = new Random();
 
@@ -192,14 +199,99 @@ public class OurDictionary {
         System.out.println(positivefinalCheck);
         double neutralFinalCheck = (double) neutral1 / (double) count;
         System.out.println(neutralFinalCheck);
-        if(negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck){
+        if(negativeFinalCheck >= 0.2 && negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck){
             JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck){
+        }else if(positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck){
             JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck){
+        }else if(neutralFinalCheck >= 0.2 && neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck){
             JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else{
-            JOptionPane.showMessageDialog(null, "Sorry I don't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2){
+            try {
+                defaultResponses();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
         }
+    }
+    public int defaultResponses() throws Exception{
+        ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+        File file = new File("remembering.txt");
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            temp.add(temp1);
+        }
+        bf.close();
+        int count = Integer.parseInt(temp.get(2));
+        if(count == 0) {
+            JOptionPane.showMessageDialog(null, "Sorry I don't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }else if(count == 1){
+            JOptionPane.showMessageDialog(null, "Unfortunately, I didn't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }else if(count == 2){
+            JOptionPane.showMessageDialog(null, "That's very nice, but I don't get it.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }else if(count == 3){
+            JOptionPane.showMessageDialog(null, temp.get(1) + " are you trying to mess with me?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }else if(count == 4){
+            JOptionPane.showMessageDialog(null, temp.get(1) + ", I am aware that this is just a game", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }else{
+            JOptionPane.showMessageDialog(null, temp.get(1) + ", I am aware that this is just a game", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, temp.get(1) + " if you could just stop messing with me I would greatly appreciate it! I have feelings too!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            count++;
+            temp.set(2, Integer.toString(count));
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+        }
+        return count;
     }
 }

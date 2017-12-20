@@ -9,6 +9,7 @@ public class Monika extends Human{
     private String phrase;
     private int age;
     private Color eyeColor;
+    private int counterForResponses;
 
     ArrayList<String> MonikasPhrase = new ArrayList<>();
     ArrayList<String> MonikasSecondPhrase= new ArrayList<>();
@@ -80,9 +81,8 @@ public class Monika extends Human{
         }
     }
     public void ifHelpisTriggered(){
-        System.out.println("Testing");
         JOptionPane.showMessageDialog(null, "You can type in something to see my response to the question", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        JOptionPane.showMessageDialog(null, "Or I can start a conversation with you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Or just press ok and I can start a conversation with you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
     }
     public void generateReturningToMonika(String fileName) throws Exception{//If Monika has met you, then reread it to the file
         String temp = null;
@@ -115,7 +115,6 @@ public class Monika extends Human{
     }
     public void isTextFieldWritten(){
         OurDictionary d = new OurDictionary();
-        System.out.println("Test");
         d.readCountLines(phrase);
     }
     public String getPhrase(){
@@ -123,6 +122,9 @@ public class Monika extends Human{
     }
     public String getName(){
         return name;
+    }
+    public int getCounterForResponses(){
+        return getCounterForResponses();
     }
     public void FileWrite(String fileName) throws Exception{ //Will write the method to a .txt file in order for Monika to remember who you are
         ArrayList<String> temp = new ArrayList<>();
@@ -134,8 +136,9 @@ public class Monika extends Human{
                 temp.add(temp1);
             }
             bf.close();
-            temp.set(0, "1");
-            temp.set(1,name);
+            temp.set(0, "Number: 1");
+            temp.set(1, name);
+
             PrintWriter p = new PrintWriter(file);
             for(int i = 0; i < temp.size(); i++){
                 p.println(temp.get(i));
@@ -145,6 +148,7 @@ public class Monika extends Human{
             p.close();
 
     }
+
     public boolean FileReaderChecker(String filename) throws Exception{ //Will check and see if Monika has met you already
         //ArrayList<String> temp = new ArrayList<>();
         String temp1 = null;
@@ -152,7 +156,7 @@ public class Monika extends Human{
         FileReader f1 = new FileReader(file);
         BufferedReader bf = new BufferedReader(f1);
         while((temp1 = bf.readLine()) != null){
-            if(temp1.equals("1")){
+            if(temp1.equals("Number: 1")){
                 return false;
             }else{
                 return true;
