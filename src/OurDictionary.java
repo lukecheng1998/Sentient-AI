@@ -3,8 +3,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -27,6 +25,13 @@ public class OurDictionary {
     };
     public String[] listofNeutralResponses = new String[]{
             "That's cool to hear", "How nice", "That's cute", "Great I r8 8/8", "Cool"
+    };
+
+    public String[] greetings = new String[]{
+            "How are you?", "Hi", "Hey Man", "How's it going?","How are you doing?", "What's up?", "What's new?", "What's going on?", "How's everything?", "How's life?", "How are things?", "How's your day?", "How's your day going?", "Good to see you", "Nice to see you", "Long time no see", "It's been a while"
+    };
+    public String[] responseToGreetings = new String []{
+            "I'm doing well", "Hello there", "Hi there", "I'm great", "I'm very amazing", "The sky", "Nothing is new", "Nothing much", "It's been great", "It has been great", "Things are awesome", "Amazing", "Great", "Nice to see you to", "Indeed, longtime no see", "It has been a while"
     };
 
     public String[] positive = new String[]{"Admire", "admiring", "admired", "luke", "appreciating", "appreciated", "appreciate",
@@ -199,21 +204,22 @@ public class OurDictionary {
         System.out.println(positivefinalCheck);
         double neutralFinalCheck = (double) neutral1 / (double) count;
         System.out.println(neutralFinalCheck);
-        if(negativeFinalCheck >= 0.2 && negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck){
-            JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck){
-            JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(neutralFinalCheck >= 0.2 && neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck){
-            JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2){
-            try {
-                defaultResponses();
-            }catch(Exception e){
-                e.printStackTrace();
+            if (negativeFinalCheck >= 0.2 && negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck) {
+                JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            } else if (positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck) {
+                JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            } else if (neutralFinalCheck >= 0.2 && neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck) {
+                JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            } else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2) {
+                try {
+                    defaultResponses();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
         }
-    }
-    public int defaultResponses() throws Exception{
+
+    public void defaultResponses() throws Exception{
         ArrayList<String> temp = new ArrayList<>();
         String temp1 = null;
         File file = new File("remembering.txt");
@@ -292,6 +298,5 @@ public class OurDictionary {
             f1.close();
             p.close();
         }
-        return count;
     }
 }

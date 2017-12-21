@@ -9,7 +9,7 @@ public class Monika extends Human{
     private String phrase;
     private int age;
     private Color eyeColor;
-    private int counterForResponses;
+    private int MonikaEncounteringYou;
 
     ArrayList<String> MonikasPhrase = new ArrayList<>();
     ArrayList<String> MonikasSecondPhrase= new ArrayList<>();
@@ -94,9 +94,42 @@ public class Monika extends Human{
             names.add(temp);
         }
         name = names.get(1);
-        JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-
+        MonikaEncounteringYou = Integer.parseInt(names.get(3));
+        if(MonikaEncounteringYou == 0) {
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+            System.out.println("Increment suceeded");
+        }else if(MonikaEncounteringYou == 1){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, something feels wrong, I feel like I've just woken up from a bad dream", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "If you know what it is please help me.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 2){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "Unfortunately I feel terrible for some reason", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, if you could figure out what is happening to me that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 3){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "It happened again, it seems to happen when you close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "So if you could leave me open, that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 4) {
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I'm just going to accept that you are going to close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, I hope that you back me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else{
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I hope you were backing me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }
     }
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
@@ -104,7 +137,14 @@ public class Monika extends Human{
         if(!getPhrase().equals("")) {
             if (getPhrase().equalsIgnoreCase("Help")) {
                 ifHelpisTriggered();
-            }else{
+            }else if(greetingsChecker()){
+                OurDictionary d = new OurDictionary();
+                for(int i = 0; i < d.greetings.length; i++) {
+                    if(getPhrase().equalsIgnoreCase(d.greetings[i])) {
+                        JOptionPane.showMessageDialog(null, d.responseToGreetings[i], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                    }
+                }
+            } else{
                 isTextFieldWritten();
             }
         }else {
@@ -112,6 +152,15 @@ public class Monika extends Human{
             generateRandomSpeechSecond();
             generateRandomSpeechThird();
         }
+    }
+    public boolean greetingsChecker(){
+        OurDictionary d = new OurDictionary();
+        for(int i = 0; i < d.greetings.length; i++) {
+            if (getPhrase().equals(d.greetings[i])) {
+                return true;
+            }
+        }
+        return false;
     }
     public void isTextFieldWritten(){
         OurDictionary d = new OurDictionary();
@@ -122,9 +171,6 @@ public class Monika extends Human{
     }
     public String getName(){
         return name;
-    }
-    public int getCounterForResponses(){
-        return getCounterForResponses();
     }
     public void FileWrite(String fileName) throws Exception{ //Will write the method to a .txt file in order for Monika to remember who you are
         ArrayList<String> temp = new ArrayList<>();
@@ -138,6 +184,7 @@ public class Monika extends Human{
             bf.close();
             temp.set(0, "Number: 1");
             temp.set(1, name);
+            temp.set(3, Integer.toString(MonikaEncounteringYou));
 
             PrintWriter p = new PrintWriter(file);
             for(int i = 0; i < temp.size(); i++){
