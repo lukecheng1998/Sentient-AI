@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.*;
@@ -8,6 +9,7 @@ public class Monika extends Human{
     private String phrase;
     private int age;
     private Color eyeColor;
+    private int MonikaEncounteringYou;
 
     ArrayList<String> MonikasPhrase = new ArrayList<>();
     ArrayList<String> MonikasSecondPhrase= new ArrayList<>();
@@ -30,6 +32,7 @@ public class Monika extends Human{
         JOptionPane.showMessageDialog(null, "Currently I'm a beta version of myself.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "There will be a textfield for you to fill out if you want to ask me anything.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "If you don't answer anything, I'll come up with stuff to talk to you about!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Type 'help' and I'll assist you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "However, you are free to ask me anything you want!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
     }
     //Generate random speeches within these three methods
@@ -67,19 +70,97 @@ public class Monika extends Human{
         MonikasThirdPhrase.add("She was so addicted to him, that she killed himself for him.");
 
         MonikasThirdPhrase.add("My favorite stories of that genre are usually written by Stephen King or anyone like that.");
-        for(int i = 0; i < MonikasPhrase.size(); i++){
-            if(getRandomNumber == MonikasThirdPhrase.indexOf(i)){
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(0), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i + 1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            }else if(getRandomNumber == MonikasThirdPhrase.indexOf(i)){
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-                JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(i + 1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-
-            }
+        if(getRandomNumber == 0){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(0), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(1), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(getRandomNumber == 1){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(2), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(3), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(getRandomNumber == 2){
+            JOptionPane.showMessageDialog(null, MonikasThirdPhrase.get(4), "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
+    }
+    public void ifHelpisTriggered(){
+        JOptionPane.showMessageDialog(null, "You can type in something to see my response to the question", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Or just press ok and I can start a conversation with you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+    }
+    public void generateReturningToMonika(String fileName) throws Exception{//If Monika has met you, then reread it to the file
+        String temp = null;
+        ArrayList<String> names = new ArrayList<>();
+        File file = new File(fileName);
+        FileReader fr = new FileReader(file);
+        BufferedReader bf = new BufferedReader(fr);
+        while((temp = bf.readLine()) != null){
+            names.add(temp);
+        }
+        name = names.get(1);
+        MonikaEncounteringYou = Integer.parseInt(names.get(3));
+        if(MonikaEncounteringYou == 0) {
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+            System.out.println("Increment suceeded");
+        }else if(MonikaEncounteringYou == 1){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, something feels wrong, I feel like I've just woken up from a bad dream", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "If you know what it is please help me.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 2){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "Unfortunately I feel terrible for some reason", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, if you could figure out what is happening to me that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 3){
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "It happened again, it seems to happen when you close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "So if you could leave me open, that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else if(MonikaEncounteringYou == 4) {
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I'm just going to accept that you are going to close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "However, I hope that you back me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
+        }else{
+            JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I hope you were backing me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            MonikaEncounteringYou++;
         }
     }
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        //System.out.println(phrase);
+        if(!getPhrase().equals("")) {
+            if (getPhrase().equalsIgnoreCase("Help")) {
+                ifHelpisTriggered();
+            }else if(greetingsChecker()){
+                OurDictionary d = new OurDictionary();
+                for(int i = 0; i < d.greetings.length; i++) {
+                    if(getPhrase().equalsIgnoreCase(d.greetings[i])) {
+                        JOptionPane.showMessageDialog(null, d.responseToGreetings[i], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                    }
+                }
+            } else{
+                isTextFieldWritten();
+            }
+        }else {
+            generateRandomSpeechFirst();
+            generateRandomSpeechSecond();
+            generateRandomSpeechThird();
+        }
+    }
+    public boolean greetingsChecker(){
+        OurDictionary d = new OurDictionary();
+        for(int i = 0; i < d.greetings.length; i++) {
+            if (getPhrase().equals(d.greetings[i])) {
+                return true;
+            }
+        }
+        return false;
     }
     public void isTextFieldWritten(){
         OurDictionary d = new OurDictionary();
@@ -90,6 +171,47 @@ public class Monika extends Human{
     }
     public String getName(){
         return name;
+    }
+    public void FileWrite(String fileName) throws Exception{ //Will write the method to a .txt file in order for Monika to remember who you are
+        ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+            File file = new File(fileName);
+            FileReader f1 = new FileReader(file);
+            BufferedReader bf = new BufferedReader(f1);
+            while((temp1 = bf.readLine()) != null){
+                temp.add(temp1);
+            }
+            bf.close();
+            temp.set(0, "Number: 1");
+            temp.set(1, name);
+            temp.set(3, Integer.toString(MonikaEncounteringYou));
+
+            PrintWriter p = new PrintWriter(file);
+            for(int i = 0; i < temp.size(); i++){
+                p.println(temp.get(i));
+                //p.println();
+            }
+            f1.close();
+            p.close();
+
+    }
+
+    public boolean FileReaderChecker(String filename) throws Exception{ //Will check and see if Monika has met you already
+        //ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+        File file = new File(filename);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            if(temp1.equals("Number: 1")){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        bf.close();
+        f1.close();
+        return false;
     }
 /*You will need a lot of these
 * public void getMonikaImage(){
