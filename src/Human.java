@@ -2,10 +2,10 @@
 import java.awt.*;
 
 public class Human {
-    private Color eyeColor;
+    private String eyeColor;
     private double age;
     private String name;
-    public Human(String name, double age, Color eyeColor){
+    public Human(String name, double age, String eyeColor){
         this.name = name;
         this.age = age;
         this.eyeColor = eyeColor;
@@ -13,13 +13,13 @@ public class Human {
     public Human(){
         this.name = "Default";
         this.age = 19;
-        this.eyeColor = Color.BLUE;
+        this.eyeColor = "BLUE";
     }
-    public Color getEyeColor() {
+    public String getEyeColor() {
         return eyeColor;
     }
 
-    public void setEyeColor(Color eyeColor) {
+    public void setEyeColor(String eyeColor) {
         this.eyeColor = eyeColor;
     }
 

@@ -15,11 +15,13 @@ public class OurDictionary {
     Random r = new Random();
 
     ImageIcon icon = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Screen Shot 2017-12-17 at 4.58.54 PM.png");
-
+    public String[] YesNoQuestion = new String[]{
+      "Yes", "No", "Not really", "My senses say no.", "Sorry I don't like it", "Actually I do!"
+    };
 
     public String[] listOfPositiveResponses = new String[]{
             "Well that's good to know", "Well I'm glad", "That's so cool", "ahaha", "ehehe", "You're so funny"
-};
+    };
     public String[] listofNegativeResponses = new String[]{
             "Well, I'm sorry you feel that way", "Sorry, I'll try to help", "My apologies if I made a mistake", "Don't worry, I also simpathize with you", "I'm sorry"
     };
@@ -28,10 +30,10 @@ public class OurDictionary {
     };
 
     public String[] greetings = new String[]{
-            "How are you?", "Hi", "Hey Man", "How's it going?","How are you doing?", "What's up?", "What's new?", "What's going on?", "How's everything?", "How's life?", "How are things?", "How's your day?", "How's your day going?", "Good to see you", "Nice to see you", "Long time no see", "It's been a while"
+            "How are you?", "Hi", "Hey Man", "How's it going?","How are you doing?", "What's up?", "What's new?", "What's going on?", "How's everything?", "How's life?", "How are things?", "How's your day?", "How's your day going?", "Good to see you", "Nice to see you", "Long time no see", "It's been a while", "How have you been?"
     };
     public String[] responseToGreetings = new String []{
-            "I'm doing well", "Hello there", "Hi there", "I'm great", "I'm very amazing", "The sky", "Nothing is new", "Nothing much", "It's been great", "It has been great", "Things are awesome", "Amazing", "Great", "Nice to see you to", "Indeed, longtime no see", "It has been a while"
+            "I'm doing well", "Hello there", "Hi there", "I'm great", "I'm very amazing", "The sky", "Nothing is new", "Nothing much", "It's been great", "It has been great", "Things are awesome", "Amazing", "Great", "Nice to see you to", "Indeed, longtime no see", "It has been a while", "I'm doing well"
     };
 
     public String[] positive = new String[]{"Admire", "admiring", "admired", "luke", "appreciating", "appreciated", "appreciate",

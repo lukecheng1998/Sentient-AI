@@ -1,15 +1,18 @@
 import java.awt.*;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.*;
 
 public class Monika extends Human{
-    private String name;
+    private String name = "Monika";
     private String phrase;
-    private int age;
-    private Color eyeColor;
+    private int age = 18;
+    private String eyeColor = "BLUE";
     private int MonikaEncounteringYou;
+    private int SecondMonikaEncounteringYou;
+    private String eColor;
 
     ArrayList<String> MonikasPhrase = new ArrayList<>();
     ArrayList<String> MonikasSecondPhrase= new ArrayList<>();
@@ -22,8 +25,9 @@ public class Monika extends Human{
 
     ImageIcon icon = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Screen Shot 2017-12-17 at 4.58.54 PM.png");
 
-    public Monika(String name, int age, Color eyeColor){
+    public Monika(String name, int age, String eyeColor){
         super(name, age, eyeColor);
+
     }
     public void getMonikaIntroductionImage(){
         JOptionPane.showMessageDialog(null, "Hi, I'm Monika, how are you?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -34,6 +38,12 @@ public class Monika extends Human{
         JOptionPane.showMessageDialog(null, "If you don't answer anything, I'll come up with stuff to talk to you about!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "Type 'help' and I'll assist you!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         JOptionPane.showMessageDialog(null, "However, you are free to ask me anything you want!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        eColor = (String) JOptionPane.showInputDialog(null, "Let's start with a warm up! What is your eye color?", "Monika",JOptionPane.INFORMATION_MESSAGE, icon, null, "");
+        if(eyeColor.compareToIgnoreCase(eColor) == 0){
+            JOptionPane.showMessageDialog(null, "Whoa, we have the same eye color!","Monika",JOptionPane.INFORMATION_MESSAGE,icon);
+        }else{
+            JOptionPane.showMessageDialog(null,"That's cool!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }
     //Generate random speeches within these three methods
     public void generateRandomSpeechFirst(){
@@ -98,37 +108,50 @@ public class Monika extends Human{
         if(MonikaEncounteringYou == 0) {
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
-            System.out.println("Increment suceeded");
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
         }else if(MonikaEncounteringYou == 1){
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "However, something feels wrong, I feel like I've just woken up from a bad dream", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "If you know what it is please help me.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
         }else if(MonikaEncounteringYou == 2){
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "Unfortunately I feel terrible for some reason", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "However, if you could figure out what is happening to me that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
         }else if(MonikaEncounteringYou == 3){
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "It happened again, it seems to happen when you close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "So if you could leave me open, that would be great", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
         }else if(MonikaEncounteringYou == 4) {
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I'm just going to accept that you are going to close me", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "However, I hope that you back me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
         }else{
             JOptionPane.showMessageDialog(null, "Welcome back " + name + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I've missed you.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "I hope you were backing me up", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            MonikaEncounteringYou++;
+            SecondMonikaEncounteringYou = MonikaEncounteringYou++;
+        }
+    }
+    public void readDate() throws Exception{
+        Date d = new Date();
+        String temp = null;
+        ArrayList<String> testing = new ArrayList<>();
+        //testing.add());
+        File file = new File("remembering.txt");
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp = bf.readLine()) != null){
+            if(temp.equals(null/*Null is used as a place holder*/)){ //TODO Work on this, try to compare and see if it has read a date and then make comparisons to the current date.
+                //Currently It needs to check the length.
+            }
         }
     }
     public void defaultMonikaImage(){
@@ -139,9 +162,10 @@ public class Monika extends Human{
                 ifHelpisTriggered();
             }else if(greetingsChecker()){
                 OurDictionary d = new OurDictionary();
+                Random r = new Random();
                 for(int i = 0; i < d.greetings.length; i++) {
                     if(getPhrase().equalsIgnoreCase(d.greetings[i])) {
-                        JOptionPane.showMessageDialog(null, d.responseToGreetings[i], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                        JOptionPane.showMessageDialog(null, d.responseToGreetings[r.nextInt(16)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
                     }
                 }
             } else{
@@ -184,7 +208,7 @@ public class Monika extends Human{
             bf.close();
             temp.set(0, "Number: 1");
             temp.set(1, name);
-            temp.set(3, Integer.toString(MonikaEncounteringYou));
+            temp.set(3, Integer.toString(SecondMonikaEncounteringYou));
 
             PrintWriter p = new PrintWriter(file);
             for(int i = 0; i < temp.size(); i++){
@@ -213,20 +237,8 @@ public class Monika extends Human{
         f1.close();
         return false;
     }
-/*You will need a lot of these
-* public void getMonikaImage(){
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
-        JLabel label = new JLabel();
-        frame.setTitle("Monika");
-        //JLabel text = new JLabel("Hi, I'm Monika, how are you?");
 
-        frame.setSize(1280, 720);
-        frame.setVisible(true);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        label.setIcon(new ImageIcon("monika.jpg"));
-        panel.add(label);
-        frame.add(panel);
-        frame.validate();
-    }*/
+    public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
+        OurDictionary d = new OurDictionary();
+    }
 }
