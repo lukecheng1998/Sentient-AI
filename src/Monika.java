@@ -237,7 +237,10 @@ public class Monika extends Human{
         f1.close();
         return false;
     }
-
+    public boolean ifTalkingWithSayori(String fileName){
+        //TODO: APPLY THE SAME RULE FROM SAYORI TO HERE
+        return false;
+    }
     public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
         OurDictionary d = new OurDictionary();
     }
