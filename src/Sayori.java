@@ -9,6 +9,7 @@ public class Sayori extends Human {
     private String name = "Sayori";
     private int age = 17;
     private String eyeColor = "Brown";
+    private String phrase;
     private String userName;
     boolean talkingWithMonika = false;
     public Sayori(String name, int age, String eyeColor){
@@ -72,5 +73,8 @@ public class Sayori extends Human {
         }else{
             JOptionPane.showMessageDialog(null,"Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
         }
+    }
+    public void DefaultSayori(){
+        phrase = (String) JOptionPane.showInputDialog(null, "What would you like to talk about?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
     }
 }

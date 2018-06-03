@@ -22,6 +22,9 @@ public class OurDictionary {
     public String[] listOfPositiveResponses = new String[]{
             "Well that's good to know", "Well I'm glad", "That's so cool", "ahaha", "ehehe", "You're so funny"
     };
+    public String[] messedUpJokes = new String[]{//TODO: Use this for sex jokes ://
+      "HAHAHAHA", "How interesting", "You're so immature", "That's what she said"
+    };
     public String[] listofNegativeResponses = new String[]{
             "Well, I'm sorry you feel that way", "Sorry, I'll try to help", "My apologies if I made a mistake", "Don't worry, I also simpathize with you", "I'm sorry"
     };

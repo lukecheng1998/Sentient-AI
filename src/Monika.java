@@ -237,9 +237,28 @@ public class Monika extends Human{
         f1.close();
         return false;
     }
-    public boolean ifTalkingWithSayori(String fileName){
+    public boolean ifTalkingWithSayori(String fileName) throws Exception{
         //TODO: APPLY THE SAME RULE FROM SAYORI TO HERE
+        String temp1 = null;
+        File file = new File(fileName);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            if(temp1 == "Sayori"){
+                return true;
+            }else{
+                return false;
+            }
+        }
         return false;
+    }
+    public void respondToTalkingWithSayori() throws Exception{
+        if(ifTalkingWithSayori("remembering.txt")){
+            JOptionPane.showMessageDialog(null, "I see you've met Sayori!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "How is she?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else{
+
+        }
     }
     public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
         OurDictionary d = new OurDictionary();
