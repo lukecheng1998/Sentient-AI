@@ -4,3 +4,4 @@ Line 2. Index 1: Monika's memory about your name.
 Line 3. Index 2: Monika checks whether or not she recognizes your question, if she doesn't, she will respond saying that she won't understand, and we increment by one to generate a different response.
 Line 4. Index 3: Upon entry, Monika checks the number of times she's greeted you and will generate a response if she has met you. We will increment if Monika has met us to generate a different response. Currently, it doesn't work.
 Line 5. Index 4: Sayori Check's if you have talked with monika first or vice versa.
+Line 6. Index 5: Check how many times you've talking with Monika or Sayori

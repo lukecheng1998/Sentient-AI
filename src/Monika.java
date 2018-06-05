@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.*;
-
+//TODO: Make asking a question much more flexible, meaning, if there are variations of a certain question, it will still generate a response
 public class Monika extends Human{
     private String name = "Monika";
     private String phrase;

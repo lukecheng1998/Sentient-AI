@@ -12,6 +12,7 @@ public class Sayori extends Human {
     private String phrase;
     private String userName;
     boolean talkingWithMonika = false;
+    private int countNumsMet;
     public Sayori(String name, int age, String eyeColor){
         super(name, age, eyeColor);
     }
@@ -65,14 +66,43 @@ public class Sayori extends Human {
 
     }
 
-    public void GreetingSayori() throws Exception{
-        if(!talkingWithMonika) {
-            JOptionPane.showMessageDialog(null, "Hiiiiii!, I'm Sayori!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
-            userName = (String) JOptionPane.showInputDialog(null, "What is your name?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
-            JOptionPane.showMessageDialog(null, "So nice to meet you" + userName + ".", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+    public void GreetingSayori() throws Exception {
+        if (!fileReaderChecker("remembering.txt")) {
+            //CHECK IF NAME HAS BEEN FILLED
+            if (!talkingWithMonika) {
+                JOptionPane.showMessageDialog(null, "Hiiiiii!, I'm Sayori!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                userName = (String) JOptionPane.showInputDialog(null, "What is your name?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
+                JOptionPane.showMessageDialog(null, "So nice to meet you " + userName + ".", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+            } else {
+                JOptionPane.showMessageDialog(null, "Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                JOptionPane.showMessageDialog(null, "Did you know that she tried to kill me once!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                JOptionPane.showMessageDialog(null, "Isn't that cool!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+            }
         }else{
-            JOptionPane.showMessageDialog(null,"Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+            if(talkingWithMonika){
+                if(countNumsMet > 1){
+                    //TODO: AFTER A SPECIFIED AMOUNT OF TIMES SAYORI WON'T CARE IF YOU HAVE BEEN TALKING WITH MONIKA
+                }else{
+                    //TODO: CURRENTLY SAYORI WILL CARE ABOUT HOW MANY TIMES YOU'VE BEEN TALKING WITH MONIKA
+                }
+            }else{
+                //DEFAULT GREETING
+            }
         }
+    }
+    public boolean fileReaderChecker(String fileName) throws Exception{
+        String temp1 = null;
+        File file = new File(fileName);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            if(temp1.equalsIgnoreCase("null")){
+                return false;
+            }else{
+                return true;
+            }
+        }
+        return false;
     }
     public void DefaultSayori(){
         phrase = (String) JOptionPane.showInputDialog(null, "What would you like to talk about?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
