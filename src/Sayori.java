@@ -82,11 +82,17 @@ public class Sayori extends Human {
             if(talkingWithMonika){
                 if(countNumsMet > 1){
                     //TODO: AFTER A SPECIFIED AMOUNT OF TIMES SAYORI WON'T CARE IF YOU HAVE BEEN TALKING WITH MONIKA
+                    JOptionPane.showMessageDialog(null, "Heyyy, you're back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
                 }else{
                     //TODO: CURRENTLY SAYORI WILL CARE ABOUT HOW MANY TIMES YOU'VE BEEN TALKING WITH MONIKA
+                    JOptionPane.showMessageDialog(null, "Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "Did you know that she tried to kill me once!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "Isn't that cool!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                 }
             }else{
-                //DEFAULT GREETING
+                JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
             }
         }
     }
