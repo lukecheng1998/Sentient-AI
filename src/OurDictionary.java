@@ -223,7 +223,11 @@ public class OurDictionary {
                 }
             }
         }
-
+    public void sayoriResponses() throws Exception{
+        ArrayList<JOptionPane> dialogResponses = new ArrayList<>();
+        JOptionPane.showMessageDialog(null, "That is so cool! I did something like that once as well!", "Sayori", JOptionPane.INFORMATION_MESSAGE, icon);
+        JOptionPane.showMessageDialog(null, "Whoa, that's awesome!", "Sayori", JOptionPane.INFORMATION_MESSAGE, icon);
+    }
     public void defaultResponses() throws Exception{
         ArrayList<String> temp = new ArrayList<>();
         String temp1 = null;
