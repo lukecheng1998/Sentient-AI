@@ -110,16 +110,27 @@ public class Sayori extends Human {
         }
         return false;
     }
+    public void RandomResponse(){
+        Random r = new Random();
+        String phrases[] = new String[]{
+            "I really like candy", "I really like pasta!", "Isn't it weird that some people can touch their tongues to their nose, while others can't?", "Hello, are you there?"
+        };
+        int num = r.nextInt(4);
+        String responsePhrase = phrases[num];
+        JOptionPane.showMessageDialog(null, responsePhrase, "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+    }
     public void DefaultSayori(){
         phrase = (String) JOptionPane.showInputDialog(null, "What would you like to talk about?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
         if(!phrase.equalsIgnoreCase("")){
             if(phrase.equalsIgnoreCase("Help")){
                 JOptionPane.showMessageDialog(null, "Hey just type something in and I'll respond", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
-                JOptionPane.showMessageDialog(null, "Or just press ok and I'll start some sort of converssation!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                JOptionPane.showMessageDialog(null, "Or just press ok and I'll start some sort of conversation!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
 
             }else{
-                
+
             }
+        }else{
+            RandomResponse();
         }
     }
 }
