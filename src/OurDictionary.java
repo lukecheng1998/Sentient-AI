@@ -15,6 +15,9 @@ public class OurDictionary {
     Random r = new Random();
 
     ImageIcon icon = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Screen Shot 2017-12-17 at 4.58.54 PM.png");
+    ImageIcon sayoriiconhappy = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Sayori2.jpg");
+    ImageIcon sayoriiconsad = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Sayori1.jpg");
+
     public String[] YesNoQuestion = new String[]{
       "Yes", "No", "Not really", "My senses say no.", "Sorry I don't like it", "Actually I do!"
     };
@@ -196,7 +199,7 @@ public class OurDictionary {
     //TODO: Write a default response method
     //The human will attempt to read the lines and increment based on the number matches
     public void readCountLines(String s) {
-        System.out.println(s);
+        //System.out.println(s);
         int count = s.split("\\s+").length;
 
         neutralCheck(s);
@@ -204,11 +207,11 @@ public class OurDictionary {
         negativeCheck(s);
 
         double negativeFinalCheck = (double) negative1 / (double) count;
-        System.out.println(negativeFinalCheck);
+        //System.out.println(negativeFinalCheck);
         double positivefinalCheck = (double) positive1 / (double) count;
-        System.out.println(positivefinalCheck);
+        //System.out.println(positivefinalCheck);
         double neutralFinalCheck = (double) neutral1 / (double) count;
-        System.out.println(neutralFinalCheck);
+        //System.out.println(neutralFinalCheck);
             if (negativeFinalCheck >= 0.2 && negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck) {
                 JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             } else if (positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck) {
@@ -223,11 +226,7 @@ public class OurDictionary {
                 }
             }
         }
-    public void sayoriResponses() throws Exception{
-        ArrayList<JOptionPane> dialogResponses = new ArrayList<>();
-        JOptionPane.showMessageDialog(null, "That is so cool! I did something like that once as well!", "Sayori", JOptionPane.INFORMATION_MESSAGE, icon);
-        JOptionPane.showMessageDialog(null, "Whoa, that's awesome!", "Sayori", JOptionPane.INFORMATION_MESSAGE, icon);
-    }
+
     public void defaultResponses() throws Exception{
         ArrayList<String> temp = new ArrayList<>();
         String temp1 = null;
@@ -307,5 +306,63 @@ public class OurDictionary {
             f1.close();
             p.close();
         }
+    }
+    //SAYORI STUFF IS DOWN HERE
+    private double sayoriNeutralCheck(String x) {
+        neutral1 = 0;
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < neutral.length; j++) {
+                if (temp[i].equalsIgnoreCase(neutral[j])) {
+                    neutral1++;
+                }
+            }
+        }
+        return neutral1;
+    }
+
+    private double sayoriNegativeCheck(String x) {
+        negative1 = 0;
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < negative.length; j++) {
+                if (temp[i].equalsIgnoreCase(negative[j])) {
+                    negative1++;
+                }
+            }
+        }
+        return negative1;
+    }
+
+    private double sayoriPositiveCheck(String x) {
+        positive1 = 0;
+        String[] temp = x.split("\\s+");
+        for(int i = 0; i < temp.length; i++) {
+            for (int j = 0; j < positive.length; j++) {
+                if (temp[i].equalsIgnoreCase(positive[j])) {
+                    positive1++;
+                }
+            }
+        }
+        return positive1;
+    }
+    public void sayoriPositiveResponses() throws Exception{
+        Random r = new Random();
+        int num = r.nextInt(4);
+        String[] responses = new String[]{
+                "Whoa, that's so cool", "How is it in reality!", "Ayy so cool!", "NICEEEE"
+        };
+        JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori", JOptionPane.INFORMATION_MESSAGE, sayoriiconhappy);
+    }
+    public void sayoriNegativeResponses() throws  Exception{
+        Random r = new Random();
+        int num = r.nextInt(4);
+        String[] responses = new String[]{
+                "Meanie!!", "NOOO That's not true at all", "What?", "LALALA I can't hear you", "You liar"
+        };
+        JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori",JOptionPane.INFORMATION_MESSAGE, sayoriiconsad);
+    }
+    public void moodCheckSayori(){
+
     }
 }
