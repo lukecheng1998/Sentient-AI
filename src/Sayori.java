@@ -120,7 +120,7 @@ public class Sayori extends Human {
         JOptionPane.showMessageDialog(null, responsePhrase, "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
     }
 
-    public void DefaultSayori(){
+    public void DefaultSayori() throws Exception{
         OurDictionary d = new OurDictionary();
         phrase = (String) JOptionPane.showInputDialog(null, "What would you like to talk about?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
         if(!phrase.equalsIgnoreCase("")){
@@ -128,7 +128,7 @@ public class Sayori extends Human {
                 JOptionPane.showMessageDialog(null, "Hey just type something in and I'll respond", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                 JOptionPane.showMessageDialog(null, "Or just press ok and I'll start some sort of conversation!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
             }else{
-                d.moodCheckSayori();
+                d.moodCheckSayori(phrase);
             }
         }else{
             RandomResponse();

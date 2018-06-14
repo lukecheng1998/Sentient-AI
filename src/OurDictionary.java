@@ -362,7 +362,19 @@ public class OurDictionary {
         };
         JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori",JOptionPane.INFORMATION_MESSAGE, sayoriiconsad);
     }
-    public void moodCheckSayori(){
-
+    public void moodCheckSayori(String x) throws Exception{
+        double tempSentence = x.length();
+        if(sayoriPositiveCheck(x)/tempSentence >= 0.3){
+            sayoriPositiveResponses();
+        }else if(sayoriNegativeCheck(x)/tempSentence >= 0.3){
+            sayoriNegativeResponses();
+        }else{
+            String[] responses = new String[]{
+                "That's nice", "How cool", "Wow"
+            };
+            Random r = new Random();
+            int num = r.nextInt(3);
+            JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori", JOptionPane.INFORMATION_MESSAGE);
+        }
     }
 }
