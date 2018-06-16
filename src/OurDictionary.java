@@ -352,7 +352,7 @@ public class OurDictionary {
         String[] responses = new String[]{
                 "Whoa, that's so cool", "How is it in reality!", "Ayy so cool!", "NICEEEE"
         };
-        JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori", JOptionPane.INFORMATION_MESSAGE, sayoriiconhappy);
+        JOptionPane.showMessageDialog(null, responses[num], "Sayori", JOptionPane.INFORMATION_MESSAGE, sayoriiconhappy);
     }
     public void sayoriNegativeResponses() throws  Exception{
         Random r = new Random();
@@ -360,7 +360,7 @@ public class OurDictionary {
         String[] responses = new String[]{
                 "Meanie!!", "NOOO That's not true at all", "What?", "LALALA I can't hear you", "You liar"
         };
-        JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori",JOptionPane.INFORMATION_MESSAGE, sayoriiconsad);
+        JOptionPane.showMessageDialog(null, responses[num], "Sayori",JOptionPane.INFORMATION_MESSAGE, sayoriiconsad);
     }
     public void moodCheckSayori(String x) throws Exception{
         double tempSentence = x.length();
@@ -374,8 +374,8 @@ public class OurDictionary {
                 "That's nice", "How cool", "Wow", "Great, I am also feeling that way as well"
             };
             Random r = new Random();
-            int num = r.nextInt(3);
-            JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori", JOptionPane.INFORMATION_MESSAGE);
+            int num = r.nextInt(4);
+            JOptionPane.showMessageDialog(null, responses[num], "Sayori", JOptionPane.INFORMATION_MESSAGE);
         }
         x = null;
     }
