@@ -364,17 +364,19 @@ public class OurDictionary {
     }
     public void moodCheckSayori(String x) throws Exception{
         double tempSentence = x.length();
+
         if(sayoriPositiveCheck(x)/tempSentence >= 0.3){
             sayoriPositiveResponses();
         }else if(sayoriNegativeCheck(x)/tempSentence >= 0.3){
             sayoriNegativeResponses();
         }else{
             String[] responses = new String[]{
-                "That's nice", "How cool", "Wow"
+                "That's nice", "How cool", "Wow", "Great, I am also feeling that way as well"
             };
             Random r = new Random();
             int num = r.nextInt(3);
             JOptionPane.showMessageDialog(null, responses[num - 1], "Sayori", JOptionPane.INFORMATION_MESSAGE);
         }
+        x = null;
     }
 }

@@ -256,8 +256,9 @@ public class Monika extends Human{
         if(ifTalkingWithSayori("remembering.txt")){
             JOptionPane.showMessageDialog(null, "I see you've met Sayori!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             JOptionPane.showMessageDialog(null, "How is she?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            JOptionPane.showMessageDialog(null, "I kinda killed her once, not a great idea", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else{
-
+            generateReturningToMonika("remembering.txt");
         }
     }
     public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
