@@ -209,6 +209,9 @@ public class Monika extends Human{
             temp.set(0, "Number: 1");
             temp.set(1, name);
             temp.set(3, Integer.toString(SecondMonikaEncounteringYou));
+            if(ifTalkingWithSayori("remembering.txt")){
+                temp.set(4, "1");
+            }
 
             PrintWriter p = new PrintWriter(file);
             for(int i = 0; i < temp.size(); i++){

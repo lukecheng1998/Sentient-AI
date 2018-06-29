@@ -123,6 +123,9 @@ public class Sayori extends Human {
     public void DefaultSayori() throws Exception{
         OurDictionary d = new OurDictionary();
         phrase = (String) JOptionPane.showInputDialog(null, "What would you like to talk about?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
+        if(phrase == null || (phrase != null && ("".equals(phrase)))){
+            //Try to find a way to go back when cancel is pressed
+        }
         if(!phrase.equalsIgnoreCase("")){
             if(phrase.equalsIgnoreCase("Help")){
                 JOptionPane.showMessageDialog(null, "Hey just type something in and I'll respond", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
@@ -134,4 +137,5 @@ public class Sayori extends Human {
             RandomResponse();
         }
     }
+
 }

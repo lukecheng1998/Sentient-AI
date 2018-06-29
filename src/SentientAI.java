@@ -8,6 +8,7 @@ public class SentientAI {
     static Object options[] = {"Monika", "Sayori"};
     public static void main(String[] args) throws Exception{
         int values = JOptionPane.showOptionDialog(null, "Who would you like to pick?", "Characters", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null,options, null);
+        //Probably need a while true in here in order to go back
         if(values == 0) {
             if (m.FileReaderChecker("remembering.txt")) {
                 m.getMonikaIntroductionImage();
