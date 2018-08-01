@@ -80,10 +80,13 @@ public class Sayori extends Human {
             }
         }else{
             if(talkingWithMonika){
-                if(countNumsMet > 1){
+                if(countNumsMet == 1){
                     //TODO: AFTER A SPECIFIED AMOUNT OF TIMES SAYORI WON'T CARE IF YOU HAVE BEEN TALKING WITH MONIKA
                     JOptionPane.showMessageDialog(null, "Heyyy, you're back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                }else if(countNumsMet == 2){
+                    JOptionPane.showMessageDialog(null, "Do you know if Monika is trying to kill me", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "But let's not worry about that, let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
                 }else{
                     //TODO: CURRENTLY SAYORI WILL CARE ABOUT HOW MANY TIMES YOU'VE BEEN TALKING WITH MONIKA
                     JOptionPane.showMessageDialog(null, "Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
@@ -136,6 +139,9 @@ public class Sayori extends Human {
         }else{
             RandomResponse();
         }
+    }
+    public void ReadfromFileSayori(){
+
     }
 
 }
