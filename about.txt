@@ -1,6 +1,6 @@
 This is description about Monika's remembering.txt
 Line 1. Index 0: Checks and sees whether or not Monika has met you.
-Line 2. Index 1: Monika's memory about your name.
+Line 2. Index 1: Monika's or Sayori's memory about your name.
 Line 3. Index 2: Monika checks whether or not she recognizes your question, if she doesn't, she will respond saying that she won't understand, and we increment by one to generate a different response.
 Line 4. Index 3: Upon entry, Monika checks the number of times she's greeted you and will generate a response if she has met you. We will increment if Monika has met us to generate a different response. Currently, it doesn't work.
 Line 5. Index 4: Sayori Check's if you have talked with monika first or vice versa.

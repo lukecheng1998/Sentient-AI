@@ -13,6 +13,8 @@ public class Sayori extends Human {
     private String userName;
     boolean talkingWithMonika = false;
     private int countNumsMet;
+    private String username;
+    public ArrayList<String> names = new ArrayList<>();
     public Sayori(String name, int age, String eyeColor){
         super(name, age, eyeColor);
     }
@@ -93,9 +95,14 @@ public class Sayori extends Human {
                     JOptionPane.showMessageDialog(null, "Did you know that she tried to kill me once!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "Isn't that cool!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                 }
-            }else{
-                JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
-                JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+            }else {
+                if (fileReaderChecker("remembering.txt")) {
+                    ReadfromFileSayori("remembering.txt");
+                    username = names.get(1);
+                    JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    JOptionPane.showMessageDialog(null, "How have you been " + username + "?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                }
             }
         }
     }
@@ -140,8 +147,14 @@ public class Sayori extends Human {
             RandomResponse();
         }
     }
-    public void ReadfromFileSayori(){
-
+    public void ReadfromFileSayori(String fileName) throws Exception{
+        String temp1 = null;
+        File file = new File(fileName);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            names.add(temp1);
+        }
     }
 
 }

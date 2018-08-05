@@ -20,8 +20,7 @@ public class Monika extends Human{
 
     Random r = new Random();
     Random r1 = new Random();
-    int getRandomNumber = r.nextInt(3);
-    int getGetRandomNumber = r1.nextInt(3);
+    //
 
     ImageIcon icon = new ImageIcon("/Users/luke/IdeaProjects/Sentient AI/Screen Shot 2017-12-17 at 4.58.54 PM.png");
 
@@ -47,6 +46,8 @@ public class Monika extends Human{
     }
     //Generate random speeches within these three methods
     public void generateRandomSpeechFirst(){
+        int getRandomNumber = r.nextInt(3);
+
         MonikasPhrase.add("Did you know that I was vegan?");
         MonikasPhrase.add("I meet a friend once, who was shy and quiet.");
         MonikasPhrase.add("My favorite books to read are the ones that generate a lot of action.");
@@ -61,6 +62,8 @@ public class Monika extends Human{
 
     }
     public void generateRandomSpeechSecond(){
+        //int getRandomNumber = r.nextInt(3);
+        int getGetRandomNumber = r1.nextInt(3);
         MonikasSecondPhrase.add("Pretty Interesting Right?");
         MonikasSecondPhrase.add("Very cool right?");
         MonikasSecondPhrase.add("Isn't that interesting");
@@ -73,9 +76,9 @@ public class Monika extends Human{
         }
     }
     public void generateRandomSpeechThird(){
+        int getRandomNumber = r.nextInt(3);
         MonikasThirdPhrase.add("Well, I learned about it, after I saw the horrible treatment of animals in the world");
         MonikasThirdPhrase.add("I also learned it's good for your body as well");
-
         MonikasThirdPhrase.add("Even though she was quiet in our group, she fell in love with a boy in a club");
         MonikasThirdPhrase.add("She was so addicted to him, that she killed himself for him.");
 
