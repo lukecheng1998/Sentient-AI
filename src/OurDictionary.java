@@ -375,7 +375,7 @@ public class OurDictionary {
             };
             Random r = new Random();
             int num = r.nextInt(4);
-            JOptionPane.showMessageDialog(null, responses[num], "Sayori", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, responses[num], "Sayori", JOptionPane.INFORMATION_MESSAGE, sayoriiconhappy);
         }
         x = null;
     }

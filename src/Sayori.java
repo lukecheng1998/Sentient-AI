@@ -99,9 +99,21 @@ public class Sayori extends Human {
                 if (fileReaderChecker("remembering.txt")) {
                     ReadfromFileSayori("remembering.txt");
                     username = names.get(1);
-                    JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
-                    JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
-                    JOptionPane.showMessageDialog(null, "How have you been " + username + "?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    int temp = r.nextInt(3);
+                    if(temp == 1) {
+                        JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "How have you been " + username + "?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    }else if(temp == 2){
+                        JOptionPane.showMessageDialog(null, "You're Back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "YAY, I'm so happy!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "How has Monika been?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    }else if (temp == 3){
+                        JOptionPane.showMessageDialog(null, "Did you talk to Monika?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "You know I don't like her, right?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                        JOptionPane.showMessageDialog(null, "Whatever, talk to me", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+
+                    }
                 }
             }
         }
