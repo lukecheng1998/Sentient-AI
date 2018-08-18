@@ -71,6 +71,7 @@ public class Sayori extends Human {
     public void GreetingSayori() throws Exception {
         if (!fileReaderChecker("remembering.txt")) {
             //CHECK IF NAME HAS BEEN FILLED
+            countNumsMet = Integer.parseInt(names.get(5));
             if (!talkingWithMonika) {
                 JOptionPane.showMessageDialog(null, "Hiiiiii!, I'm Sayori!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                 userName = (String) JOptionPane.showInputDialog(null, "What is your name?", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon, null, "");
@@ -86,14 +87,17 @@ public class Sayori extends Human {
                     //TODO: AFTER A SPECIFIED AMOUNT OF TIMES SAYORI WON'T CARE IF YOU HAVE BEEN TALKING WITH MONIKA
                     JOptionPane.showMessageDialog(null, "Heyyy, you're back!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "Let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    countNumsMet++;
                 }else if(countNumsMet == 2){
                     JOptionPane.showMessageDialog(null, "Do you know if Monika is trying to kill me", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "But let's not worry about that, let's keep talking!", "Sayori", JOptionPane.QUESTION_MESSAGE, Sayori2icon);
+                    countNumsMet++;
                 }else{
                     //TODO: CURRENTLY SAYORI WILL CARE ABOUT HOW MANY TIMES YOU'VE BEEN TALKING WITH MONIKA
                     JOptionPane.showMessageDialog(null, "Whoa, have you met Monika, how has she been?", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "Did you know that she tried to kill me once!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
                     JOptionPane.showMessageDialog(null, "Isn't that cool!", "Sayori", JOptionPane.INFORMATION_MESSAGE, Sayori2icon);
+                    countNumsMet++;
                 }
             }else {
                 if (fileReaderChecker("remembering.txt")) {
@@ -167,6 +171,10 @@ public class Sayori extends Human {
         while((temp1 = bf.readLine()) != null){
             names.add(temp1);
         }
+
+    }
+    public void WritetoFileFromSayori(String filName) throws Exception{
+
     }
 
 }

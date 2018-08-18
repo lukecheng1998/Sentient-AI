@@ -258,6 +258,7 @@ public class Monika extends Human{
         }
         return false;
     }
+
     public void respondToTalkingWithSayori() throws Exception{
         if(ifTalkingWithSayori("remembering.txt")){
             JOptionPane.showMessageDialog(null, "I see you've met Sayori!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
