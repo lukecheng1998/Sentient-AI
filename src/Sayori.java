@@ -173,8 +173,19 @@ public class Sayori extends Human {
         }
 
     }
-    public void WritetoFileFromSayori(String filName) throws Exception{
-
+    public void WritetoFileFromSayori(String fileName) throws Exception{
+        ArrayList<String> temp = new ArrayList<>();
+        String temp1 = null;
+        File file = new File(fileName);
+        FileReader f1 = new FileReader(file);
+        BufferedReader bf = new BufferedReader(f1);
+        while((temp1 = bf.readLine()) != null){
+            temp.add(temp1);
+        }
+        bf.close();
+        temp.set(0, "Number: 1");
+        temp.set(1, name);
+        temp.set(3, "1");
     }
 
 }
