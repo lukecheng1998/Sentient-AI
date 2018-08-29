@@ -14,6 +14,8 @@ public class Monika extends Human{
     private int SecondMonikaEncounteringYou;
     private String eColor;
 
+    int reRunQuestion = 1;
+
     ArrayList<String> MonikasPhrase = new ArrayList<>();
     ArrayList<String> MonikasSecondPhrase= new ArrayList<>();
     ArrayList<String> MonikasThirdPhrase = new ArrayList<>();
@@ -163,6 +165,10 @@ public class Monika extends Human{
         if(!getPhrase().equals("")) {
             if (getPhrase().equalsIgnoreCase("Help")) {
                 ifHelpisTriggered();
+            }else if(getPhrase().equalsIgnoreCase("Generate Random Number")){
+                while(reRunQuestion == 1){
+                    generateNumber();
+                }
             }else if(greetingsChecker()){
                 OurDictionary d = new OurDictionary();
                 Random r = new Random();
@@ -270,5 +276,16 @@ public class Monika extends Human{
     }
     public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
         OurDictionary d = new OurDictionary();
+    }
+    public int generateNumber(){//TODO: Monika will help you find a number
+        //        phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        String b1 = (String) JOptionPane.showInputDialog(null, "Enter the lowest range of numbers", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        String a1 = (String) JOptionPane.showInputDialog(null, "Enter the highest range of numbers", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        int a = Integer.parseInt(a1);
+        int b = Integer.parseInt(b1);
+        int result = r.nextInt(a - b) + b;
+        JOptionPane.showMessageDialog(null, "Your number is " + result + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        reRunQuestion = JOptionPane.showConfirmDialog(null, "Would you like to ask again?", "Monika", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
+        return reRunQuestion;
     }
 }
