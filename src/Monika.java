@@ -274,8 +274,25 @@ public class Monika extends Human{
             generateReturningToMonika("remembering.txt");
         }
     }
-    public void getQuestion(){//TODO: Call from Our Dictionary class and then check and see if it is a question
+    public void askQuestion(String str){//TODO: Call from Our Dictionary class and then check and see if it is a question
         OurDictionary d = new OurDictionary();
+        String[] temp = str.split(" ");
+        String[] isQuestion = temp[temp.length - 1].split("");
+        if (isQuestion[isQuestion.length - 1].equals("?")){
+            if(temp[0].equalsIgnoreCase("Who")){
+
+            }else if(temp[0].equalsIgnoreCase("What")){
+
+            }else if(temp[0].equalsIgnoreCase("Where")){
+
+            }else if(temp[0].equalsIgnoreCase("When")){
+
+            }else if(temp[0].equalsIgnoreCase("Why")){
+
+            }else if(temp[0].equalsIgnoreCase("How")){
+
+            }
+        }
     }
     public int generateNumber(){//TODO: Monika will help you find a number
         //        phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");

@@ -379,4 +379,22 @@ public class OurDictionary {
         }
         x = null;
     }
+    public void WhatQuestion (String x) {
+
+    }
+    public void WhoQuestion (String x) {
+
+    }
+    public void WhereQuestion (String x) {
+
+    }
+    public void WhenQuestion (String x){
+
+    }
+    public void WhyQuestion (String x){
+
+    }
+    public void HowQuestion (String x){
+
+    }
 }
