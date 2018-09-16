@@ -385,12 +385,22 @@ public class OurDictionary {
           "I'm not sure, what do you think?", "That is up to you to decide", "I am Monika, you're new Girlfriend!", "That is me!!!!"
         };
         String [] thatResponse = new String[]{
-          "That is what I've done."
+          "That is what I've done.", "That is something secret, don't look at it!"
+        };
+        String [] doingResponse = new String[]{
+          "I am doing nothing", "I am looking at you", "I am admiring you so you can be my boyfriend"
         };
         if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("you?")){
             JOptionPane.showMessageDialog(null,responses1[2], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
         }else if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("that?")){
             JOptionPane.showMessageDialog(null, responses1[3], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            Random r = new Random(2);
+            int temp = r.nextInt();
+            JOptionPane.showMessageDialog(null, thatResponse[temp], "Monnika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("doing?")){
+            Random r = new Random(3);
+            int temp = r.nextInt();
+            JOptionPane.showMessageDialog(null, doingResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
     public void WhoQuestion (String x) {
