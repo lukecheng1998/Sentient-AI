@@ -280,17 +280,17 @@ public class Monika extends Human{
         String[] isQuestion = temp[temp.length - 1].split("");
         if (isQuestion[isQuestion.length - 1].equals("?")){
             if(temp[0].equalsIgnoreCase("Who")){
-
+                d.WhoQuestion(str);
             }else if(temp[0].equalsIgnoreCase("What")){
-
+                d.WhatQuestion(str);
             }else if(temp[0].equalsIgnoreCase("Where")){
-
+                d.WhereQuestion(str);
             }else if(temp[0].equalsIgnoreCase("When")){
-
+                d.WhenQuestion(str);
             }else if(temp[0].equalsIgnoreCase("Why")){
-
+                d.WhyQuestion(str);
             }else if(temp[0].equalsIgnoreCase("How")){
-
+                d.HowQuestion(str);
             }
         }
     }

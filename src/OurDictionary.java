@@ -380,7 +380,18 @@ public class OurDictionary {
         x = null;
     }
     public void WhatQuestion (String x) {
-
+        String[] whatTemp = x.split(" ");
+        String [] responses1 = new String[]{
+          "I'm not sure, what do you think?", "That is up to you to decide", "I am Monika, you're new Girlfriend!", "That is me!!!!"
+        };
+        String [] thatResponse = new String[]{
+          "That is what I've done."
+        };
+        if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("you?")){
+            JOptionPane.showMessageDialog(null,responses1[2], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
+        }else if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("that?")){
+            JOptionPane.showMessageDialog(null, responses1[3], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
     }
     public void WhoQuestion (String x) {
 
