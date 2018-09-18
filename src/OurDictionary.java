@@ -404,7 +404,7 @@ public class OurDictionary {
         }
     }
     public void WhoQuestion (String x) {
-
+        String[] WhoTemp = x.split(" ");
     }
     public void WhereQuestion (String x) {
 
