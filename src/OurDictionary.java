@@ -388,7 +388,10 @@ public class OurDictionary {
           "That is what I've done.", "That is something secret, don't look at it!"
         };
         String [] doingResponse = new String[]{
-          "I am doing nothing", "I am looking at you", "I am admiring you so you can be my boyfriend"
+          "I am doing nothing", "I am looking at you", "I am admiring you so you can be my boyfriend", "I don't know, nothing but when you're here, I'm down to do anything"
+        };
+        String [] standardWhatResponse = new String[]{
+          "Hmm not sure about that, gotta think about it.", "You're gonna have to figure that out dude", "How am I suppose to know, I'm not smart as you"
         };
         if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("you?")){
             JOptionPane.showMessageDialog(null,responses1[2], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
@@ -401,6 +404,11 @@ public class OurDictionary {
             Random r = new Random(3);
             int temp = r.nextInt();
             JOptionPane.showMessageDialog(null, doingResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else{
+            Random r = new Random(3);
+            int temp = r.nextInt();
+            JOptionPane.showMessageDialog(null, standardWhatResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+
         }
     }
     public void WhoQuestion (String x) {
