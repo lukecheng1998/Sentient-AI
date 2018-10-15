@@ -413,6 +413,15 @@ public class OurDictionary {
     }
     public void WhoQuestion (String x) {
         String[] WhoTemp = x.split(" ");
+        String[] whoResponses = new String[]{
+          "I don't know him or her", "Who are you seeing?", "Are you cheating on me?"
+        };
+        String[] natsukiResponses = new String[]{
+               "Oh yeah, isn't she the crazy girl that pretends to not like you, but in actuality really likes you?", "Yeah I know her, she's the girl that made you pancakes"
+        };
+        String[] SayoriResponses = new String[]{
+          "She was kinda suicidal, I would've not wanted to be near her", "Man I cannot believe you wanted to date her"
+        };
     }
     public void WhereQuestion (String x) {
 
