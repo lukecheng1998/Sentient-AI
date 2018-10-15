@@ -417,11 +417,22 @@ public class OurDictionary {
           "I don't know him or her", "Who are you seeing?", "Are you cheating on me?"
         };
         String[] natsukiResponses = new String[]{
-               "Oh yeah, isn't she the crazy girl that pretends to not like you, but in actuality really likes you?", "Yeah I know her, she's the girl that made you pancakes"
+               "Oh yeah, isn't she the crazy girl that pretends to not like you, but in actuality really likes you?", "Yeah I know her, she's the girl that made you cupcakes"
         };
         String[] SayoriResponses = new String[]{
           "She was kinda suicidal, I would've not wanted to be near her", "Man I cannot believe you wanted to date her"
         };
+        if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Sayori")){
+            Random r = new Random(2);
+            int s = r.nextInt();
+            
+        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Natsuki")){
+
+        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Monika")){
+
+        }else{
+
+        }
     }
     public void WhereQuestion (String x) {
 
