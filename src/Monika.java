@@ -3,6 +3,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 import javax.swing.*;
 //TODO: Make asking a question much more flexible, meaning, if there are variations of a certain question, it will still generate a response
 public class Monika extends Human{
@@ -162,6 +163,10 @@ public class Monika extends Human{
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
         //System.out.println(phrase);
+        String temp[] = new String[getPhrase().length()];
+        for(int i = 0; i < getPhrase().length(); i++){
+            temp[i] = String.valueOf(getPhrase().split(" "));
+        }
         if(!getPhrase().equals("")) {
             if (getPhrase().equalsIgnoreCase("Help")) {
                 ifHelpisTriggered();
@@ -177,6 +182,8 @@ public class Monika extends Human{
                         JOptionPane.showMessageDialog(null, d.responseToGreetings[r.nextInt(16)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
                     }
                 }
+            }else if(temp[temp.length - 1].equalsIgnoreCase("?")){
+                askQuestion(phrase);
             } else{
                 isTextFieldWritten();
             }
@@ -304,5 +311,17 @@ public class Monika extends Human{
         JOptionPane.showMessageDialog(null, "Your number is " + result + ".", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         reRunQuestion = JOptionPane.showConfirmDialog(null, "Would you like to ask again?", "Monika", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         return reRunQuestion;
+    }
+    public String getRandomQuestion() throws IOException{//Read file and return a question based on whatever
+        Scanner s = new Scanner(new File("/Users/luke/IdeaProjects/Sentient AI/questions.txt"));
+        ArrayList<String> list = new ArrayList<>();
+        while(s.hasNext()){
+            list.add(s.next());
+        }
+        s.close();
+        Random r = new Random(list.size() - 1);
+        int temp = r.nextInt();
+        JOptionPane.showInputDialog(null, list.get(temp), "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+        return null;
     }
 }

@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -416,6 +417,9 @@ public class OurDictionary {
         String[] whoResponses = new String[]{
           "I don't know him or her", "Who are you seeing?", "Are you cheating on me?"
         };
+        String[] MonikaResponses = new String[]{
+          "Yes that's me!", "What do you mean who am I, I am your girlfriend!", "I am you're girlfriend right?"
+        };
         String[] natsukiResponses = new String[]{
                "Oh yeah, isn't she the crazy girl that pretends to not like you, but in actuality really likes you?", "Yeah I know her, she's the girl that made you cupcakes"
         };
@@ -423,15 +427,22 @@ public class OurDictionary {
           "She was kinda suicidal, I would've not wanted to be near her", "Man I cannot believe you wanted to date her"
         };
         if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Sayori")){
-            Random r = new Random(2);
+            Random r = new Random(3);
             int s = r.nextInt();
-            
+            JOptionPane.showMessageDialog(null, SayoriResponses[s],"Monika", JOptionPane.INFORMATION_MESSAGE,icon);
+
         }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Natsuki")){
-
+            Random r = new Random(3);
+            int s = r.nextInt();
+            JOptionPane.showMessageDialog(null, natsukiResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Monika")){
-
+            Random r = new Random(3);
+            int s = r.nextInt();
+            JOptionPane.showMessageDialog(null, MonikaResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else{
-
+            Random r = new Random(3);
+            int s = r.nextInt();
+            JOptionPane.showMessageDialog(null, whoResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
     public void WhereQuestion (String x) {
