@@ -160,6 +160,7 @@ public class Monika extends Human{
             }
         }
     }
+    int count = 0;
     public void defaultMonikaImage(){
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
         //System.out.println(phrase);
@@ -188,6 +189,16 @@ public class Monika extends Human{
                 isTextFieldWritten();
             }
         }else {
+            Random r = new Random(5);
+            int nums = r.nextInt() + 5;
+            if(nums > 5 && nums < 10){
+                try {
+                    getRandomQuestion();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            count++;
             generateRandomSpeechFirst();
             generateRandomSpeechSecond();
             generateRandomSpeechThird();
@@ -312,7 +323,7 @@ public class Monika extends Human{
         reRunQuestion = JOptionPane.showConfirmDialog(null, "Would you like to ask again?", "Monika", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, icon);
         return reRunQuestion;
     }
-    public String getRandomQuestion() throws IOException{//Read file and return a question based on whatever
+    public void getRandomQuestion() throws IOException{//Read file and return a question based on whatever
         Scanner s = new Scanner(new File("/Users/luke/IdeaProjects/Sentient AI/questions.txt"));
         ArrayList<String> list = new ArrayList<>();
         while(s.hasNext()){
@@ -322,6 +333,5 @@ public class Monika extends Human{
         Random r = new Random(list.size() - 1);
         int temp = r.nextInt();
         JOptionPane.showInputDialog(null, list.get(temp), "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
-        return null;
     }
 }

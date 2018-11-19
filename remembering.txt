@@ -1,6 +1,6 @@
 Number: 1
 Sumati 
-1
+6
 0
 null
 0
