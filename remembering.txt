@@ -1,6 +1,6 @@
-Number: 1
-Sumati 
-6
+Number: 0
+null
+0
 0
 null
 0

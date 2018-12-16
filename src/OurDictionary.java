@@ -5,6 +5,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 public class OurDictionary {
@@ -221,91 +223,55 @@ public class OurDictionary {
                 JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             } else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2) {
                 try {
-                    defaultResponses();
+                    defaultResponses(s);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         }
 
-    public void defaultResponses() throws Exception{
-        ArrayList<String> temp = new ArrayList<>();
-        String temp1 = null;
-        File file = new File("remembering.txt");
-        FileReader f1 = new FileReader(file);
-        BufferedReader bf = new BufferedReader(f1);
-        while((temp1 = bf.readLine()) != null){
-            temp.add(temp1);
+    public void defaultResponses(String s) throws Exception{//Making Monika more personalized
+        Queue<String> shortTerm = new LinkedList<String>();
+        ArrayList<String> longTerm = new ArrayList<>();
+        String[] tempS = s.split("\\W+");
+        boolean check = false;
+        //TODO: THIS SHIT OKAY
+        shortTerm.add(s);
+        String temp0, temp1 = null, temp2 = null;
+        for(int i = 0; i < tempS.length; i++){
+            if(tempS[i].equalsIgnoreCase("like") || tempS[i].equalsIgnoreCase("favorite") || tempS[i].equalsIgnoreCase("think") || tempS[i].equalsIgnoreCase("enjoy")){
+                temp1 = tempS[i];
+            }
+            //FIND LIST OF NOUNS AS WELL AS LIST OF OTHER WORDS IN HERE AS WELL
+            File file = new File("/Users/luke/IdeaProjects/Sentient\\ AI/91K\\ nouns.txt");
+            BufferedReader bf = new BufferedReader(new FileReader(file));
+            while((temp0 = bf.readLine()) != null){
+                for(int j = 0; j < tempS.length; j++){
+                    if(temp0.equalsIgnoreCase(tempS[j])){
+                        temp2 = temp0;
+                        check = true;
+                    }
+                }
+            }
         }
-        bf.close();
-        int count = Integer.parseInt(temp.get(2));
-        if(count == 0) {
-            JOptionPane.showMessageDialog(null, "Sorry I don't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
+        if(check){
+            longTerm.add(s);
+        }
+        String[] thisDefaultResponses = new String[]{
+            "Wow that is so cool", "That is nice I'm glad you like that", "You're so cool " + Monika.class.getName()
+        };
+        Random r = new Random(4);
+        int temp = r.nextInt();
+        JOptionPane.showMessageDialog(null, thisDefaultResponses[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        File monikaFile = new File("monika.txt");
+        BufferedReader bf = new BufferedReader(new FileReader(monikaFile));
+        while((temp0 = bf.readLine()) != null){
+            tempS = temp0.split("\\W+");
+            for(int i = 0; i < tempS.length; i++){
+                if(temp2.equalsIgnoreCase(tempS[i])){//TODO: 
+
+                }
             }
-            f1.close();
-            p.close();
-        }else if(count == 1){
-            JOptionPane.showMessageDialog(null, "Unfortunately, I didn't understand that.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
-            }
-            f1.close();
-            p.close();
-        }else if(count == 2){
-            JOptionPane.showMessageDialog(null, "That's very nice, but I don't get it.", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
-            }
-            f1.close();
-            p.close();
-        }else if(count == 3){
-            JOptionPane.showMessageDialog(null, temp.get(1) + " are you trying to mess with me?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
-            }
-            f1.close();
-            p.close();
-        }else if(count == 4){
-            JOptionPane.showMessageDialog(null, temp.get(1) + ", I am aware that this is just a game", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
-            }
-            f1.close();
-            p.close();
-        }else{
-            JOptionPane.showMessageDialog(null, temp.get(1) + ", I am aware that this is just a game", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            JOptionPane.showMessageDialog(null, temp.get(1) + " if you could just stop messing with me I would greatly appreciate it! I have feelings too!", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            count++;
-            temp.set(2, Integer.toString(count));
-            PrintWriter p = new PrintWriter(file);
-            for(int i = 0; i < temp.size(); i++){
-                p.println(temp.get(i));
-                //p.println();
-            }
-            f1.close();
-            p.close();
         }
     }
     //SAYORI STUFF IS DOWN HERE
@@ -426,16 +392,16 @@ public class OurDictionary {
         String[] SayoriResponses = new String[]{
           "She was kinda suicidal, I would've not wanted to be near her", "Man I cannot believe you wanted to date her"
         };
-        if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Sayori")){
+        if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Sayori?")){
             Random r = new Random(3);
             int s = r.nextInt();
             JOptionPane.showMessageDialog(null, SayoriResponses[s],"Monika", JOptionPane.INFORMATION_MESSAGE,icon);
 
-        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Natsuki")){
+        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Natsuki?")){
             Random r = new Random(3);
             int s = r.nextInt();
             JOptionPane.showMessageDialog(null, natsukiResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Monika")){
+        }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Monika?")){
             Random r = new Random(3);
             int s = r.nextInt();
             JOptionPane.showMessageDialog(null, MonikaResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -446,15 +412,44 @@ public class OurDictionary {
         }
     }
     public void WhereQuestion (String x) {
+        String[] whereTemp = x.split(" ");
+        String[] whereResponses = new String[]{
 
+        };
     }
     public void WhenQuestion (String x){
+        String[] whenTemp = x.split(" ");
+        String[] whenResponses = new String[]{
+          "I don't know when that happened", "Not exactly sure", "When did what happen?"
+        };
+        String[] arrivalResponses = new String[]{
+          "I came to existance when you started me up", "I booted myself up", "I created myself"
+        };
+        if(whenTemp[whenTemp.length - 1].equalsIgnoreCase("up?")){
+            for(int i = 0; i < whenTemp.length; i++){
+                if(whenTemp[i].equalsIgnoreCase("did") || whenTemp[i].equalsIgnoreCase("were")){
+                    Random r = new Random(3);
+                    int s = r.nextInt();
+                    JOptionPane.showMessageDialog(null, arrivalResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                }
+            }
+        }else{
+            Random r = new Random(3);
+            int s = r.nextInt();
+            JOptionPane.showMessageDialog(null, whenResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }
 
     }
     public void WhyQuestion (String x){
 
     }
     public void HowQuestion (String x){
+        String[] howTemp = x.split(" ");
+        String[] howResponse = new String[]{
 
+        };
+        if(howTemp[1].equalsIgnoreCase("did")){
+
+        }
     }
 }

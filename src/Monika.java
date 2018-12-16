@@ -1,9 +1,6 @@
 import java.awt.*;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 import javax.swing.*;
 //TODO: Make asking a question much more flexible, meaning, if there are variations of a certain question, it will still generate a response
 public class Monika extends Human{
@@ -14,6 +11,8 @@ public class Monika extends Human{
     private int MonikaEncounteringYou;
     private int SecondMonikaEncounteringYou;
     private String eColor;
+
+    public Queue<String> userPhrases = new LinkedList<>();
 
     int reRunQuestion = 1;
 
@@ -186,7 +185,7 @@ public class Monika extends Human{
             }else if(temp[temp.length - 1].equalsIgnoreCase("?")){
                 askQuestion(phrase);
             } else{
-                isTextFieldWritten();
+                isTextFieldWritten(phrase);
             }
         }else {
             Random r = new Random(5);
@@ -213,9 +212,9 @@ public class Monika extends Human{
         }
         return false;
     }
-    public void isTextFieldWritten(){
-        OurDictionary d = new OurDictionary();
-        d.readCountLines(phrase);
+    public void isTextFieldWritten(String text){
+        //TODO: Change this
+        conversationWithMonika(text);
     }
     public String getPhrase(){
         return phrase;
@@ -333,5 +332,17 @@ public class Monika extends Human{
         Random r = new Random(list.size() - 1);
         int temp = r.nextInt();
         JOptionPane.showInputDialog(null, list.get(temp), "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
+    }
+    public void conversationWithMonika(String text) {
+        String[] temp = text.split(" ");
+
+        if(temp[temp.length - 1].equals("?")){
+            userPhrases.add(text);
+            askQuestion(text);
+        }else{
+            userPhrases.add(text);
+            OurDictionary d = new OurDictionary();
+            d.readCountLines(text);
+        }
     }
 }
