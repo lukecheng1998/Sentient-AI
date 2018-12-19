@@ -243,7 +243,7 @@ public class OurDictionary {
                 temp1 = tempS[i];
             }
             //FIND LIST OF NOUNS AS WELL AS LIST OF OTHER WORDS IN HERE AS WELL
-            File file = new File("/Users/luke/IdeaProjects/Sentient\\ AI/91K\\ nouns.txt");
+            File file = new File("91Knouns.txt");
             BufferedReader bf = new BufferedReader(new FileReader(file));
             while((temp0 = bf.readLine()) != null){
                 for(int j = 0; j < tempS.length; j++){
@@ -253,6 +253,7 @@ public class OurDictionary {
                     }
                 }
             }
+            bf.close();
         }
         if(check){
             longTerm.add(s);
@@ -265,14 +266,24 @@ public class OurDictionary {
         JOptionPane.showMessageDialog(null, thisDefaultResponses[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         File monikaFile = new File("monika.txt");
         BufferedReader bf = new BufferedReader(new FileReader(monikaFile));
-        while((temp0 = bf.readLine()) != null){
-            tempS = temp0.split("\\W+");
-            for(int i = 0; i < tempS.length; i++){
-                if(temp2.equalsIgnoreCase(tempS[i])){//TODO: 
-
+        if(temp1.equalsIgnoreCase("like") || temp1.equalsIgnoreCase("favorite") || temp1.equalsIgnoreCase("think") || temp1.equalsIgnoreCase("enjoy")) {
+            while ((temp0 = bf.readLine()) != null) {
+                tempS = temp0.split("\\W+");
+                for (int i = 0; i < tempS.length; i++) {
+                    if (temp2.equalsIgnoreCase(tempS[i])) {//TODO:
+                        JOptionPane.showMessageDialog(null, "You know that I really enjoy the " + temp2 + " as well", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                        break;
+                    }
                 }
             }
+        }//TODO: File write Monikas memory to long-term-memory.txt
+        File f2 = new File("long-term-memory.txt");
+        PrintWriter p = new PrintWriter(f2);
+        for(int i = 0; i < longTerm.size(); i++){
+            p.println(longTerm.get(i));
         }
+        p.close();
+
     }
     //SAYORI STUFF IS DOWN HERE
     private double sayoriNeutralCheck(String x) {
