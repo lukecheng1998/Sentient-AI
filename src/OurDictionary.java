@@ -424,9 +424,15 @@ public class OurDictionary {
     }
     public void WhereQuestion (String x) {
         String[] whereTemp = x.split(" ");
-        String[] whereResponses = new String[]{
-
+        String temp1, temp2;
+        if(whereTemp[whereTemp.length - 1].equalsIgnoreCase("from?")){
+            temp2 = whereTemp[whereTemp.length - 1];
+            temp1 = whereTemp[whereTemp.length - 2];
+        }
+        String[] whereAreYouFromResponses = new String[]{
+            "I am from your heart", "I am from you", "I am from your computer"
         };
+
     }
     public void WhenQuestion (String x){
         String[] whenTemp = x.split(" ");
