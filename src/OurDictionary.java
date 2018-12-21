@@ -201,7 +201,7 @@ public class OurDictionary {
     }
     //TODO: Write a default response method
     //The human will attempt to read the lines and increment based on the number matches
-    public void readCountLines(String s) {
+    public double readCountLines(String s) {
         //System.out.println(s);
         int count = s.split("\\s+").length;
 
@@ -214,23 +214,41 @@ public class OurDictionary {
         double positivefinalCheck = (double) positive1 / (double) count;
         //System.out.println(positivefinalCheck);
         double neutralFinalCheck = (double) neutral1 / (double) count;
+        int checker = 0;
         //System.out.println(neutralFinalCheck);
             if (negativeFinalCheck >= 0.2 && negativeFinalCheck > positivefinalCheck && negativeFinalCheck > neutralFinalCheck) {
-                JOptionPane.showMessageDialog(null, listofNegativeResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            } else if (positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck) {
-                JOptionPane.showMessageDialog(null, listOfPositiveResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            } else if (neutralFinalCheck >= 0.2 && neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck) {
-                JOptionPane.showMessageDialog(null, listofNeutralResponses[r.nextInt(5)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            } else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2) {
                 try {
-                    defaultResponses(s);
+                    defaultResponses(s, 1);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                checker = 1;
+            } else if (positivefinalCheck >= 0.2 && positivefinalCheck > neutralFinalCheck && positivefinalCheck > negativeFinalCheck) {
+                try {
+                    defaultResponses(s, 2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                checker = 2;
+            } else if (neutralFinalCheck >= 0.2 && neutralFinalCheck > positivefinalCheck && neutralFinalCheck > negativeFinalCheck) {
+                try {
+                    defaultResponses(s, 3);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                checker = 3;
+            } else if (negativeFinalCheck < 0.2 || positivefinalCheck < 0.2 || neutralFinalCheck < 0.2) {
+                try {
+                    defaultResponses(s, 4);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                checker = 4;
             }
+            return checker;
         }
 
-    public void defaultResponses(String s) throws Exception{//Making Monika more personalized
+    public void defaultResponses(String s, double in) throws Exception{//Making Monika more personalized
         Queue<String> shortTerm = new LinkedList<String>();
         ArrayList<String> longTerm = new ArrayList<>();
         String[] tempS = s.split("\\W+");
@@ -238,44 +256,69 @@ public class OurDictionary {
         //TODO: THIS SHIT OKAY
         shortTerm.add(s);
         String temp0, temp1 = null, temp2 = null;
-        for(int i = 0; i < tempS.length; i++){
-            if(tempS[i].equalsIgnoreCase("like") || tempS[i].equalsIgnoreCase("favorite") || tempS[i].equalsIgnoreCase("think") || tempS[i].equalsIgnoreCase("enjoy")){
-                temp1 = tempS[i];
+        if(in > 1) {
+            for (int i = 0; i < tempS.length; i++) {
+                if (tempS[i].equalsIgnoreCase("like") || tempS[i].equalsIgnoreCase("favorite") || tempS[i].equalsIgnoreCase("think") || tempS[i].equalsIgnoreCase("enjoy")) {
+                    temp1 = tempS[i];
+                }
+                //FIND LIST OF NOUNS AS WELL AS LIST OF OTHER WORDS IN HERE AS WELL
+                File file = new File("91Knouns.txt");
+                BufferedReader bf = new BufferedReader(new FileReader(file));
+                while ((temp0 = bf.readLine()) != null) {
+                    for (int j = 0; j < tempS.length; j++) {
+                        if (temp0.equalsIgnoreCase(tempS[j])) {
+                            temp2 = temp0;
+                            check = true;
+                        }
+                    }
+                }
+                bf.close();
             }
-            //FIND LIST OF NOUNS AS WELL AS LIST OF OTHER WORDS IN HERE AS WELL
-            File file = new File("91Knouns.txt");
-            BufferedReader bf = new BufferedReader(new FileReader(file));
-            while((temp0 = bf.readLine()) != null){
-                for(int j = 0; j < tempS.length; j++){
-                    if(temp0.equalsIgnoreCase(tempS[j])){
-                        temp2 = temp0;
-                        check = true;
+            if (check) {
+                longTerm.add(s);
+            }
+            String[] thisDefaultResponses = new String[]{
+                    "Wow that is so cool", "That is nice I'm glad you like that", "You're so cool " + Monika.class.getName()
+            };
+            Random r = new Random(4);
+            int temp = r.nextInt();
+            JOptionPane.showMessageDialog(null, thisDefaultResponses[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+            File monikaFile = new File("monika.txt");
+            BufferedReader bf = new BufferedReader(new FileReader(monikaFile));
+            if (temp1.equalsIgnoreCase("like") || temp1.equalsIgnoreCase("favorite") || temp1.equalsIgnoreCase("think") || temp1.equalsIgnoreCase("enjoy")) {
+                while ((temp0 = bf.readLine()) != null) {
+                    tempS = temp0.split("\\W+");
+                    for (int i = 0; i < tempS.length; i++) {
+                        if (temp2.equalsIgnoreCase(tempS[i])) {//TODO:
+                            JOptionPane.showMessageDialog(null, "You know that I really enjoy the " + temp2 + " as well", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                            break;
+                        }
                     }
                 }
             }
-            bf.close();
-        }
-        if(check){
-            longTerm.add(s);
-        }
-        String[] thisDefaultResponses = new String[]{
-            "Wow that is so cool", "That is nice I'm glad you like that", "You're so cool " + Monika.class.getName()
-        };
-        Random r = new Random(4);
-        int temp = r.nextInt();
-        JOptionPane.showMessageDialog(null, thisDefaultResponses[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-        File monikaFile = new File("monika.txt");
-        BufferedReader bf = new BufferedReader(new FileReader(monikaFile));
-        if(temp1.equalsIgnoreCase("like") || temp1.equalsIgnoreCase("favorite") || temp1.equalsIgnoreCase("think") || temp1.equalsIgnoreCase("enjoy")) {
-            while ((temp0 = bf.readLine()) != null) {
-                tempS = temp0.split("\\W+");
-                for (int i = 0; i < tempS.length; i++) {
-                    if (temp2.equalsIgnoreCase(tempS[i])) {//TODO:
-                        JOptionPane.showMessageDialog(null, "You know that I really enjoy the " + temp2 + " as well", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        }else if(in == 1){
+            shortTerm.add(s);
+            for(int i = 0; i < tempS.length; i++){
+                if(tempS[i].equalsIgnoreCase("you")){
+                    temp2 = tempS[i];
+                    for(int j = 0; j < tempS.length; j++){
+                        if(tempS[j].equalsIgnoreCase("hate") || tempS[j].equalsIgnoreCase("dislike") || tempS[j].equalsIgnoreCase("fuck")){
+                            temp1 = tempS[j];
+                            check = true;
+                            break;
+                        }
+                    }
+                    if(check){
                         break;
                     }
                 }
             }
+            String[] negativeResponses = new String[]{
+                "Oh well that's unfortunate, you're stuck with me", "Wow Rude!", "That's not cool!", "Do that again and I'll show something horrifying"
+            };
+            Random r = new Random();
+            int te = r.nextInt(4);
+            JOptionPane.showMessageDialog(null, negativeResponses[te], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }//TODO: File write Monikas memory to long-term-memory.txt
         File f2 = new File("long-term-memory.txt");
         PrintWriter p = new PrintWriter(f2);
