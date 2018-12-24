@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -13,7 +10,7 @@ public class OurDictionary {
     private double neutral1 = 0;
     private double positive1 = 0;
     private double negative1 = 0;
-
+    public  ArrayList<String> longTerm = new ArrayList<>();
 
     Random r = new Random();
 
@@ -247,10 +244,17 @@ public class OurDictionary {
             }
             return checker;
         }
-
+    public void reloadMonikasMemory() throws Exception{//Reload Monika's memory
+        File file = new File("long-term-memory.txt");
+        BufferedReader bf = new BufferedReader(new FileReader(file));
+        String temp = null;
+        while((temp = bf.readLine()) != null){
+            longTerm.add(temp);
+        }
+    }
     public void defaultResponses(String s, double in) throws Exception{//Making Monika more personalized
+        //TODO: make monika respond to posessions and stuff like so
         Queue<String> shortTerm = new LinkedList<String>();
-        ArrayList<String> longTerm = new ArrayList<>();
         String[] tempS = s.split("\\W+");
         boolean check = false;
         //TODO: THIS SHIT OKAY
@@ -278,10 +282,10 @@ public class OurDictionary {
                 longTerm.add(s);
             }
             String[] thisDefaultResponses = new String[]{
-                    "Wow that is so cool", "That is nice I'm glad you like that", "You're so cool " + Monika.class.getName()
+                    "Wow that is so cool", "That is nice I'm glad you like that", "You're so cool "//TODO: add in the name later on
             };
-            Random r = new Random(4);
-            int temp = r.nextInt();
+            Random r = new Random();
+            int temp = r.nextInt(4);
             JOptionPane.showMessageDialog(null, thisDefaultResponses[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
             File monikaFile = new File("monika.txt");
             BufferedReader bf = new BufferedReader(new FileReader(monikaFile));
@@ -309,6 +313,7 @@ public class OurDictionary {
                         }
                     }
                     if(check){
+                        longTerm.add(s);
                         break;
                     }
                 }

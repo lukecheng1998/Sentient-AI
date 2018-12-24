@@ -4,7 +4,8 @@ import java.util.*;
 import javax.swing.*;
 //TODO: Make asking a question much more flexible, meaning, if there are variations of a certain question, it will still generate a response
 public class Monika extends Human{
-    private String name = "Monika";
+    private String ownName = "Monika";
+    private String name;
     private String phrase;
     private int age = 18;
     private String eyeColor = "BLUE";
@@ -29,6 +30,9 @@ public class Monika extends Human{
     public Monika(String name, int age, String eyeColor){
         super(name, age, eyeColor);
 
+    }
+    public String getOwnName(){
+        return ownName;
     }
     public void getMonikaIntroductionImage(){
         JOptionPane.showMessageDialog(null, "Hi, I'm Monika, how are you?", "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -101,6 +105,8 @@ public class Monika extends Human{
     }
     public void generateReturningToMonika(String fileName) throws Exception{//If Monika has met you, then reread it to the file
         String temp = null;
+        OurDictionary d = new OurDictionary();
+        d.reloadMonikasMemory();
         ArrayList<String> names = new ArrayList<>();
         File file = new File(fileName);
         FileReader fr = new FileReader(file);
