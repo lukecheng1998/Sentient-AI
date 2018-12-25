@@ -473,14 +473,20 @@ public class OurDictionary {
     public void WhereQuestion (String x) {
         String[] whereTemp = x.split(" ");
         String temp1, temp2;
-        if(whereTemp[whereTemp.length - 1].equalsIgnoreCase("from?")){
-            temp2 = whereTemp[whereTemp.length - 1];
-            temp1 = whereTemp[whereTemp.length - 2];
-        }
         String[] whereAreYouFromResponses = new String[]{
-            "I am from your heart", "I am from you", "I am from your computer"
+                "I am from your heart", "I am from you", "I am from your computer"
         };
+        if(whereTemp[whereTemp.length - 1].equalsIgnoreCase("from?")){
+            temp2 = whereTemp[whereTemp.length - 2];
+            for(int i = 0; i < whereTemp.length; i++){
+                if(whereTemp[i].equalsIgnoreCase(temp2) && whereTemp[i + 1].equalsIgnoreCase("from?")){
+                    Random r = new Random();
+                    int wRandom = r.nextInt(3);
+                    JOptionPane.showMessageDialog(null, whereAreYouFromResponses[wRandom], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                }
+            }
 
+        }
     }
     public void WhenQuestion (String x){
         String[] whenTemp = x.split(" ");
@@ -514,7 +520,14 @@ public class OurDictionary {
 
         };
         if(howTemp[1].equalsIgnoreCase("did")){
-
+            if(howTemp[howTemp.length - 1].equalsIgnoreCase("that?")){
+                String[] howDidResponses = new String[]{
+                    "I'm not sure you tell me", "I used magic, it's amazing", "I just did it"
+                };
+                Random r = new Random();
+                int hRandom = r.nextInt(3);
+                JOptionPane.showMessageDialog(null, howDidResponses[hRandom], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
+            }
         }
     }
 }
