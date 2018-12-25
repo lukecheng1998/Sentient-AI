@@ -21,7 +21,6 @@ public class SentientAI {
             }
         }else if(values == 1){
             //TODO: ADD if statement if we've already introduced
-
             s.GreetingSayori();
             while(true){
                 s.DefaultSayori();

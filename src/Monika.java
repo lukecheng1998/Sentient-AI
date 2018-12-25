@@ -170,6 +170,8 @@ public class Monika extends Human{
         phrase = (String) JOptionPane.showInputDialog(null,"Well what would you like to ask me?", "Monika", JOptionPane.QUESTION_MESSAGE, icon, null, "");
         //System.out.println(phrase);
         String temp[] = new String[getPhrase().length()];
+        String[] questionPhrase = phrase.split(" ");
+        questionPhrase = questionPhrase[questionPhrase.length - 1].split("");
         for(int i = 0; i < getPhrase().length(); i++){
             temp[i] = String.valueOf(getPhrase().split(" "));
         }
@@ -188,7 +190,7 @@ public class Monika extends Human{
                         JOptionPane.showMessageDialog(null, d.responseToGreetings[r.nextInt(16)], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
                     }
                 }
-            }else if(temp[temp.length - 1].equalsIgnoreCase("?")){
+            }else if(questionPhrase[questionPhrase.length - 1].equals("?")){
                 askQuestion(phrase);
             } else{
                 isTextFieldWritten(phrase);

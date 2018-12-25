@@ -423,16 +423,16 @@ public class OurDictionary {
             JOptionPane.showMessageDialog(null,responses1[2], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
         }else if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("that?")){
             JOptionPane.showMessageDialog(null, responses1[3], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
-            Random r = new Random(2);
-            int temp = r.nextInt();
-            JOptionPane.showMessageDialog(null, thatResponse[temp], "Monnika", JOptionPane.INFORMATION_MESSAGE, icon);
+            Random r = new Random();
+            int temp = r.nextInt(2);
+            JOptionPane.showMessageDialog(null, thatResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else if(whatTemp[whatTemp.length - 1].equalsIgnoreCase("doing?")){
-            Random r = new Random(3);
-            int temp = r.nextInt();
+            Random r = new Random();
+            int temp = r.nextInt(3);
             JOptionPane.showMessageDialog(null, doingResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else{
-            Random r = new Random(3);
-            int temp = r.nextInt();
+            Random r = new Random();
+            int temp = r.nextInt(3);
             JOptionPane.showMessageDialog(null, standardWhatResponse[temp], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
 
         }
@@ -452,21 +452,21 @@ public class OurDictionary {
           "She was kinda suicidal, I would've not wanted to be near her", "Man I cannot believe you wanted to date her"
         };
         if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Sayori?")){
-            Random r = new Random(3);
-            int s = r.nextInt();
+            Random r = new Random();
+            int s = r.nextInt(3);
             JOptionPane.showMessageDialog(null, SayoriResponses[s],"Monika", JOptionPane.INFORMATION_MESSAGE,icon);
 
         }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Natsuki?")){
-            Random r = new Random(3);
-            int s = r.nextInt();
+            Random r = new Random();
+            int s = r.nextInt(3);
             JOptionPane.showMessageDialog(null, natsukiResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else if(WhoTemp[WhoTemp.length - 1].equalsIgnoreCase("Monika?")){
-            Random r = new Random(3);
-            int s = r.nextInt();
+            Random r = new Random();
+            int s = r.nextInt(3);
             JOptionPane.showMessageDialog(null, MonikaResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }else{
-            Random r = new Random(3);
-            int s = r.nextInt();
+            Random r = new Random();
+            int s = r.nextInt(3);
             JOptionPane.showMessageDialog(null, whoResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
     }
@@ -493,14 +493,14 @@ public class OurDictionary {
         if(whenTemp[whenTemp.length - 1].equalsIgnoreCase("up?")){
             for(int i = 0; i < whenTemp.length; i++){
                 if(whenTemp[i].equalsIgnoreCase("did") || whenTemp[i].equalsIgnoreCase("were")){
-                    Random r = new Random(3);
-                    int s = r.nextInt();
+                    Random r = new Random();
+                    int s = r.nextInt(3);
                     JOptionPane.showMessageDialog(null, arrivalResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
                 }
             }
         }else{
-            Random r = new Random(3);
-            int s = r.nextInt();
+            Random r = new Random();
+            int s = r.nextInt(3);
             JOptionPane.showMessageDialog(null, whenResponses[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
         }
 
