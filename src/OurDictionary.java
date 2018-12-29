@@ -512,7 +512,10 @@ public class OurDictionary {
 
     }
     public void WhyQuestion (String x){
-
+        String[] whyTemp = x.split(" ");
+        String[] whyResponse = new String[] {
+            "I'm not sure", "That's up to you to decide, not me", "Oof I'll need to think about that"
+        };
     }
     public void HowQuestion (String x){
         String[] howTemp = x.split(" ");
