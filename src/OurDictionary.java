@@ -516,11 +516,12 @@ public class OurDictionary {
         String[] whyResponse = new String[] {
             "I'm not sure", "That's up to you to decide, not me", "Oof I'll need to think about that"
         };
+
     }
     public void HowQuestion (String x){
         String[] howTemp = x.split(" ");
         String[] howResponse = new String[]{
-
+            "I have been well", "You know, I've been waiting for you", "Fantastic!", "I have been dreaming about you"
         };
         if(howTemp[1].equalsIgnoreCase("did")){
             if(howTemp[howTemp.length - 1].equalsIgnoreCase("that?")){
@@ -530,6 +531,14 @@ public class OurDictionary {
                 Random r = new Random();
                 int hRandom = r.nextInt(3);
                 JOptionPane.showMessageDialog(null, howDidResponses[hRandom], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
+            }
+        }else{
+            for(int i = 0; i < howTemp.length; i++){
+                if(howTemp[i].equalsIgnoreCase("you")){
+                    Random r = new Random();
+                    int s = r.nextInt(4);
+                    JOptionPane.showMessageDialog(null, howResponse[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+                }
             }
         }
     }
