@@ -532,7 +532,11 @@ public class OurDictionary {
                 int hRandom = r.nextInt(3);
                 JOptionPane.showMessageDialog(null, howDidResponses[hRandom], "Monika", JOptionPane.INFORMATION_MESSAGE,icon);
             }
-        }else{
+        }else if(howTemp[howTemp.length - 1].equalsIgnoreCase("going?")){
+            Random r = new Random();
+            int s = r.nextInt(4);
+            JOptionPane.showMessageDialog(null, howResponse[s], "Monika", JOptionPane.INFORMATION_MESSAGE, icon);
+        } else{
             for(int i = 0; i < howTemp.length; i++){
                 if(howTemp[i].equalsIgnoreCase("you")){
                     Random r = new Random();
